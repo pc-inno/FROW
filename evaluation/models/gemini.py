@@ -34,8 +34,6 @@ def local_image_to_data_url(image_path):
         # Construct the data URL
         return f"data:image/jpeg;base64,{base64_encoded_data}"
 
-
-# 初始化Ark客户端，从环境变量中读取您的API Key
 client = OpenAI(
     api_key='',
     base_url="https://api.302.ai/v1/chat/completions"
@@ -43,12 +41,12 @@ client = OpenAI(
 
 def chat(question, image_path):
     response = client.chat.completions.create(
-        model = "claude-3-5-sonnet-20241022",
+        model = "gemini-1.5-pro",
         messages = [
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": question},  # 文本消息
+                    {"type": "text", "text": question},
                     {
                         "type": "image_url",
                         "image_url": {
@@ -87,7 +85,7 @@ if __name__ == "__main__":
     category = "cub"
     origin_path = f"benchmark/{category}_with_reference.jsonl"
     
-    save_path = f"./results/{category}/claude_{category}_result.jsonl"
+    save_path = f"./results/{category}/gemini_{category}_result.jsonl"
     exist_names = set()
     if os.path.exists(save_path):
         exist_lines = open(save_path).readlines()

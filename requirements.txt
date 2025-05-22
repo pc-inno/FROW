@@ -1,0 +1,3 @@
+openai
+pillow
+volcengine-python-sdk[ark] 
